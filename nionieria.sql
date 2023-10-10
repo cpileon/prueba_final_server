@@ -4,5 +4,5 @@ DROP TABLE usuarios
 select * from usuarios
 DELETE FROM usuarios WHERE id=2
 
-CREATE TABLE productos ( id SERIAL PRIMARY KEY, idUsuario INTEGER REFERENCES usuarios(id), nombre VARCHAR(100), precio INTEGER, stock INTEGER, imagen VARCHAR(500), descripcion VARCHAR(1000), categoria VARCHAR (25), estado VARCHAR(25));
+CREATE TABLE productos ( id SERIAL PRIMARY KEY, idUsuario INTEGER REFERENCES usuarios(id), nombre VARCHAR(100), precio INTEGER, imagen VARCHAR(500), descripcion VARCHAR(1000), categoria VARCHAR (25), estado VARCHAR(25));
 select * from productos

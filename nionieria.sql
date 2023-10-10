@@ -1,4 +1,4 @@
-CREATE TABLE usuarios (id SERIAL, nombre VARCHAR(100) NOT NULL, apellido VARCHAR(100) NOT NULL,  email VARCHAR(100) NOT NULL, password VARCHAR(100) NOT NULL);
+CREATE TABLE usuarios (id SERIAL unique, nombre VARCHAR(100) NOT NULL, apellido VARCHAR(100) NOT NULL,  email VARCHAR(100) NOT NULL, password VARCHAR(100) NOT NULL);
 DROP TABLE usuarios
 
 select * from usuarios

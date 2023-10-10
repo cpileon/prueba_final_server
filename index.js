@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 
-const { registrarUsuario, obtenerDatos, loginUsuario } = require("./consultas");
-const { reportarConsultas, chequeoToken, chequeoCredenciales, getProductos, agregarProducto, eliminarProducto } = require('./middlewares');
+const { registrarUsuario, obtenerDatos, loginUsuario, agregarProducto, eliminarProducto, getProductos } = require("./consultas");
+const { reportarConsultas, chequeoToken, chequeoCredenciales} = require('./middlewares');
 const PORT = process.env.PORT || 3000;
 
 const prepararHATEOAS = (productos) => {
@@ -73,12 +73,12 @@ app.get("/usuarios", chequeoToken, async (req, res) => {
         await agregarProducto(idUsuario, nombre, precio, stock, imagen, descripcion, categoria, estado)
         res.send("Producto agregado con éxito")
     } catch (error) {
+      console.log(error)
         const { code } = error
         if (code == "23502") {
-            res.status(400)
-                .send(error)
+          res.status(400).send("Uno o más campos son nulos o no válidos");
         } else {
-            res.status(500).send(error)
+          res.status(500).send("Error interno del servidor");
         }
     }
 })

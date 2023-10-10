@@ -53,14 +53,14 @@ const loginUsuario = async (email, password) => {
 
 };
 
-/////////////////////////////////////////////////////////////////////////////
+
 const agregarProducto = async (idUsuario, nombre, precio, stock, imagen, descripcion, categoria, estado) => {
   const consulta = "INSERT INTO productos values (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8)"
   const values = [idUsuario, nombre, precio, stock, imagen, descripcion, categoria, estado]
   const result = await pool.query(consulta, values)
   console.log("Producto agregado")
 }
-
+/////////////////////////////////////////////////////////////////////////////
 const eliminarProducto = async (id) => {
   const consulta = "DELETE from productos WHERE id = $1"
   const values = [id]

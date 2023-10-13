@@ -84,13 +84,18 @@ app.delete("/producto/:id", async (req, res) => {
   res.send("Producto eliminado con éxito")
 })
 
-app.get("/misproductos", reportarConsultas, async (req, res) => {
+app.post("/misproductos", reportarConsultas, async (req, res) => {
   try {
-    const misProductos = await getMisProductos();
+    const { idUsuario } = req.body
+    console.log(req.body)
+    const misProductos = await getMisProductos(idUsuario);
     console.log(misProductos)
     res.json(misProductos)
 
   } catch (error) {
-    res.status(500).send(error)
+    /* res.status(500).send(error) */
+    console.log(error)
   }
 });
+
+

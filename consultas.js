@@ -85,11 +85,11 @@ const getMisProductos = async (idUsuario) => {
     const values = [idUsuario];
     const { rows } = await pool.query(consulta, values);
     return rows;
+
   } catch (error) {
     console.log(error)
   }
 }
-
 
 /* const filtroProductos = async ({ precio_min, precio_max, categoria, estado }) => {
   let filtros = []

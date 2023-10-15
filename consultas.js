@@ -90,6 +90,25 @@ const getMisProductos = async (idUsuario) => {
     console.log(error)
   }
 }
+////EXPERIMENTO PARA OBTENER EL ID POR PRODUCTO
+const obtenerProductoPorId = async (id) => {
+  try {
+    const consulta = "SELECT * FROM productos WHERE id = $1";
+    const values = [id];
+    const { rows } = await pool.query(consulta, values);
+
+    if (rows.length === 0) {
+      throw { code: 404, message: "Producto no encontrado" };
+    }
+
+    // Devuelve el producto encontrado
+    return rows[0];
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 
 /* const filtroProductos = async ({ precio_min, precio_max, categoria, estado }) => {
   let filtros = []
@@ -118,4 +137,4 @@ const getMisProductos = async (idUsuario) => {
  */
 /////////////////////////////////////////////////////////////////////////////
 
-module.exports = { registrarUsuario, obtenerDatos, loginUsuario, agregarProducto, eliminarProducto, getProductos, getMisProductos }
+module.exports = { registrarUsuario, obtenerDatos, loginUsuario, agregarProducto, eliminarProducto, getProductos, getMisProductos, obtenerProductoPorId }

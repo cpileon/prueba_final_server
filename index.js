@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 
-const { registrarUsuario, obtenerDatos, loginUsuario, agregarProducto, eliminarProducto, getProductos, getMisProductos } = require("./consultas");
+const { registrarUsuario, obtenerDatos, loginUsuario, agregarProducto, eliminarProducto, getProductos, getMisProductos, obtenerProductoPorId } = require("./consultas");
 const { reportarConsultas, chequeoToken, chequeoCredenciales } = require('./middlewares');
 const PORT = process.env.PORT || 3000;
 
@@ -98,4 +98,13 @@ app.post("/misproductos", reportarConsultas, async (req, res) => {
   }
 });
 
-
+///EXPERIMENTO PARA OBTENER PRODUCTO
+app.get("/producto/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const producto = await obtenerProductoPorId(id);
+    res.json(producto);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
